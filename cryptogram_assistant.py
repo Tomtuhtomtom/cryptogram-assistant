@@ -59,6 +59,22 @@ def getBlanks(puzzle):
 # later - find the indexes of the spaces and print puzzle on multiple lines
 def printBoard(blanks, puzzle):
     cls()
+    # spaces = []
+    # for index in range(len(puzzle)):
+    #     if puzzle[index] == ' ':
+    #         spaces.append(index)
+    # for count in range(len(spaces) // 3 + 1):
+    #     start = spaces[count * len(spaces) // 3]
+    #     end = spaces[len(spaces) // 3 + 3]
+    #     if count == 0:
+    #         print(' '.join(blanks[0:spaces[2]]))
+    #         print(' '.join(puzzle[0:spaces[2]]))
+    #     elif count == (len(spaces) // 3):
+    #         print(' '.join(blanks[start:]))
+    #         print(' '.join(puzzle[start:]))
+    #     else:
+    #         print(' '.join(blanks[start:end])) 
+    #         print(' '.join(puzzle[start:end]))
     print(f"{' '.join(blanks)}\n")
     print(' '.join(puzzle))
 
