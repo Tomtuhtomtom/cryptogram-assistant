@@ -49,18 +49,8 @@ def getCryptogram():
 def getBlanks(puzzle):
     convert_letters_to_blanks = []
     for letter in puzzle:
-        if letter == ' ':
-            convert_letters_to_blanks.append(' ')
-        elif letter == "'":
-            convert_letters_to_blanks.append("'")
-        elif letter == ',':
-            convert_letters_to_blanks.append(',')
-        elif letter == '.':
-            convert_letters_to_blanks.append('.')
-        elif letter == '?':
-            convert_letters_to_blanks.append('?')
-        elif letter == '!':
-            convert_letters_to_blanks.append('!')
+        if not letter.isalpha():
+            convert_letters_to_blanks.append(letter)
         else:
             convert_letters_to_blanks.append('_')
     return convert_letters_to_blanks
