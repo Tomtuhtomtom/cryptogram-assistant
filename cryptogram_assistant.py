@@ -56,45 +56,41 @@ def getBlanks(puzzle):
     return convert_letters_to_blanks
 
 
-# later - find the indexes of the spaces and print puzzle on multiple lines
 def printBoard(blanks, puzzle):
     cls()
-    # spaces = []
-    # for index in range(len(puzzle)):
-    #     if puzzle[index] == ' ':
-    #         spaces.append(index)
-    # for count in range(len(spaces) // 3 + 1):
-    #     start = spaces[count * len(spaces) // 3]
-    #     end = spaces[len(spaces) // 3 + 3]
-    #     if count == 0:
-    #         print(' '.join(blanks[0:spaces[2]]))
-    #         print(' '.join(puzzle[0:spaces[2]]))
-    #     elif count == (len(spaces) // 3):
-    #         print(' '.join(blanks[start:]))
-    #         print(' '.join(puzzle[start:]))
-    #     else:
-    #         print(' '.join(blanks[start:end])) 
-    #         print(' '.join(puzzle[start:end]))
-    print(f"{' '.join(blanks)}\n")
-    print(' '.join(puzzle))
+    # blanks and puzzle comes in as a list of letters so letters can be replaced in replaceLetter function
+    # blanks and puzzle need to be converted to list of words for display board
+    blanks_str = ''.join(blanks)    # converts blanks from list of letters to string of words
+    puzzle_str = ''.join(puzzle)
+    blanks_lst = blanks_str.split() # converst blanks from string of words to list of words
+    puzzle_lst = puzzle_str.split()
+    print_blanks = ''
+    print_puzzle = ''
+    num_of_words = 4
+    for i in range(0, len(puzzle_lst), num_of_words):
+        print_blanks = ' '.join(blanks_lst[i:i+num_of_words]) + '\n'
+        print(' '.join(print_blanks))
+        print_puzzle = ' '.join(puzzle_lst[i:i+num_of_words]) + '\n'
+        print(' '.join(print_puzzle))
 
 
 def replaceLetter(solution, puzzle):
     letter = input('\nWhich letter would you like to change?\n').upper()
     quitCheck(letter)
     letter = letter[0]
-    if letter.isalpha():
-        new_letter = input('What letter would you like to replace it with?\n').upper()
-        quitCheck(new_letter)
-        new_letter = new_letter[0]
-        if not new_letter.isalpha():
-            new_letter = '_'
-        elif new_letter in solution:
-            print("You've used this letter already\nPlease replace letter before using again\n")
-            new_letter = '_'
-        for i in range(len(puzzle)):
-            if puzzle[i] == letter:
-                solution[i] = new_letter
+    if letter in puzzle:
+        if letter.isalpha():
+            new_letter = input('What letter would you like to replace it with?\n').upper()
+            quitCheck(new_letter)
+            new_letter = new_letter[0]
+            if not new_letter.isalpha():
+                new_letter = '_'
+            elif new_letter in solution:
+                print("You've used this letter already\nPlease replace letter before using again\n")
+                new_letter = '_'
+            for i in range(len(puzzle)):
+                if puzzle[i] == letter:
+                    solution[i] = new_letter
     printBoard(solution, puzzle)
     return solution
 
