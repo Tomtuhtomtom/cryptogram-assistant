@@ -19,8 +19,9 @@ You can enter a Cryptogram Puzzle and this program will help manage your progres
 A couple of things to keep in mind:
 You can stop at any time by typing 'QUIT'
 This program will make sure you don't use the same letter more than once
-If you do want to use a letter you've already used, you will will have to replace it before you can use it again
+If you do want to use a letter you've already used, you will have to replace it before you can use it again
 You can restore a letter back to a blank entry by using any non alpha character as the replacement letter
+If you enter multiple letters, the program will use the first letter you entered
     ''')
     ready = False
     while not ready:
@@ -75,9 +76,11 @@ def printBoard(blanks, puzzle):
 def replaceLetter(solution, puzzle):
     letter = input('\nWhich letter would you like to change?\n').upper()
     quitCheck(letter)
+    letter = letter[0]
     if letter.isalpha():
         new_letter = input('What letter would you like to replace it with?\n').upper()
         quitCheck(new_letter)
+        new_letter = new_letter[0]
         if not new_letter.isalpha():
             new_letter = '_'
         elif new_letter in solution:
