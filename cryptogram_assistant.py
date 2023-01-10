@@ -82,12 +82,10 @@ def replaceLetter(solution, puzzle):
         if letter.isalpha():
             new_letter = input('What letter would you like to replace it with?\n').upper()
             quitCheck(new_letter)
-            new_letter = new_letter[0]
-            if not new_letter.isalpha():
+            if not new_letter.isalpha() or len(new_letter) == 0 or new_letter in solution:
                 new_letter = '_'
-            elif new_letter in solution:
-                print("You've used this letter already\nPlease replace letter before using again\n")
-                new_letter = '_'
+            else:
+                new_letter = new_letter[0]
             for i in range(len(puzzle)):
                 if puzzle[i] == letter:
                     solution[i] = new_letter
